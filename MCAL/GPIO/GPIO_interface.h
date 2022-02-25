@@ -55,4 +55,8 @@ STATUS MGPIO_u8GetPinValue(GPIO_PORT copy_u8Port, u8 copy_u8Pin);
 
 void MGPIO_voidLockPins(GPIO_PORT copy_u8Port, u16 copy_u8LockPattern);
 
+#define RCC_GPIOA	RCC_APB2_BUS,2
+#define RCC_GPIOB	RCC_APB2_BUS,3
+#define RCC_GPIOC	RCC_APB2_BUS,4
+
 #endif /* MCAL_GPIO_GPIO_INTERFACE_H_ */

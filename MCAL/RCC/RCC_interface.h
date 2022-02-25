@@ -10,20 +10,27 @@
 
 // clock sources
 typedef enum {
-	RCC_HSE = 17, RCC_HSI = 1, RCC_PLL = 25
+	RCC_HSE = 17,
+	RCC_HSI = 1,
+	RCC_PLL = 25
 } RCC_CLOCK_SOURCE;
 
 typedef enum {
-	RCC_PLL_SOURCE_HSI_2, RCC_PLL_SOURCE_HSE, RCC_PLL_SOURCE_HSE_2
+	RCC_PLL_SOURCE_HSI_2,
+	RCC_PLL_SOURCE_HSE,
+	RCC_PLL_SOURCE_HSE_2
 } RCC_PLL_SOURCE;
 
 typedef enum {
-	RCC_STATUS_ON = 1, RCC_STATUS_OFF = 0
+	RCC_STATUS_ON = 1,
+	RCC_STATUS_OFF = 0
 } RCC_STATES;
 
 // system buses
 typedef enum {
-	RCC_AHB_BUS = 4, RCC_APB1_BUS = 8, RCC_APB2_BUS = 11
+	RCC_AHB_BUS = 4,
+	RCC_APB1_BUS = 8,
+	RCC_APB2_BUS = 11
 } RCC_BUS;
 
 // prescalers for APB buses
@@ -64,5 +71,9 @@ void MRCC_voidSetPeripheralClock(RCC_BUS copy_u8Bus, u8 copy_u8PeripheralNum,
 		RCC_STATES copy_periph_status);
 
 void MRCC_voidConfigurePLL(RCC_PLL_SOURCE souce, u8 mul_factor);
+
+#define RCC_GPIOA	RCC_APB2_BUS,2
+#define RCC_GPIOB	RCC_APB2_BUS,3
+#define RCC_GPIOC	RCC_APB2_BUS,4
 
 #endif /* MCAL_RCC_RCC_INTERFACE_H_ */

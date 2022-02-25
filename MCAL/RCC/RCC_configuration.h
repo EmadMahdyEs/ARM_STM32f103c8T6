@@ -16,7 +16,9 @@
  RCC_SOURCE_PLL
 
  **************************************/
-#define RCC_SYSTEM_CLOCK_SOURCE	RCC_SOURCE_PLL
+#define RCC_SYSTEM_CLOCK_SOURCE	RCC_SOURCE_HSE
+
+#define RCC_SYSTEM_CLOCK	8000000
 
 /************************************************
  choose the input source for PLL
@@ -47,7 +49,7 @@
  RCC_AHB_PRESCALER_256
  RCC_AHB_PRESCALER_512
  ************************************************/
-#define RCC_AHB_BUS_PRESCALER	RCC_AHB_PRESCALER_2
+#define RCC_AHB_BUS_PRESCALER	RCC_AHB_PRESCALER_NO
 
 /*******************************************
  define the prescaler for APB1 & APB2 BUSES

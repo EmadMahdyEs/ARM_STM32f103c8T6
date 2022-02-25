@@ -12,8 +12,26 @@
 #include "../Inc/MCAL/RCC/RCC_configuration.h"
 #include "../Inc/MCAL/RCC/RCC_private.h"
 
+u32 RCC_F_CPU;
+u32 RCC_AHB_Frequency;
+u32 RCC_APB1_Frequency;
+u32 RCC_APB2_Frequency;
+
 void MRCC_voidInit(void)
 {
+	/* assign the system clock global variable*/
+	RCC_F_CPU = RCC_SYSTEM_CLOCK;
+
+	/* assign the AHB frequency global variable*/
+#if RCC_AHB_BUS_PRESCALER <=10
+	RCC_AHB_Frequency = RCC_F_CPU >> (RCC_AHB_BUS_PRESCALER - 7);
+#else
+	RCC_AHB_Frequency = RCC_F_CPU>>(RCC_AHB_BUS_PRESCALER-7+1);
+#endif
+
+	/* assign the APB1 & APB2 frequency global variable */
+	RCC_APB1_Frequency = RCC_F_CPU >> (RCC_APB1_BUS_PRESCALER - 3);
+	RCC_APB2_Frequency = RCC_F_CPU >> (RCC_APB2_BUS_PRESCALER - 3);
 
 	MRCC_voidSetBusClocks(RCC_AHB_BUS_PRESCALER, RCC_APB1_BUS_PRESCALER,
 	RCC_APB2_BUS_PRESCALER);
@@ -63,7 +81,7 @@ u8 MRCC_u8CheckClockSource(RCC_CLOCK_SOURCE copy_u8CLK)
 		{
 			counter++;
 			state = 0;
-			//if (counter == max_wait_time) break;
+			if (counter == max_wait_time) break;
 		}
 	}
 	return state;

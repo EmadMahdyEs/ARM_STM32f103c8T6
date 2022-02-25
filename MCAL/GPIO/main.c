@@ -4,19 +4,7 @@
 #include "../Inc/MCAL/RCC/RCC_interface.h"
 #include "../Inc/MCAL/GPIO/GPIO_interface.h"
 
-#include "stdio.h"
 
-int _write(int file, char *ptr, int len)
-{
-	int DataIdx;
-	for (DataIdx = 0; DataIdx < len; DataIdx++)
-	{
-		ITM_SendChar(*ptr++);
-	}
-	return len;
-}
-
-int dumb;
 
 int main(void)
 {
@@ -40,7 +28,6 @@ int main(void)
 		MGPIO_voidSetPinValue(GPIO_PORTC, 13, GPIO_HIGH);
 		MGPIO_voidSetPinValue(GPIO_PORTA, 1, GPIO_HIGH);
 		MGPIO_voidSetPinValue(GPIO_PORTA, 2, GPIO_HIGH);
-		printf("hello world");
 		for (int x = 0; x < 50000; x++)
 			;
 
@@ -49,7 +36,6 @@ int main(void)
 		MGPIO_voidSetPinValue(GPIO_PORTA, 2, GPIO_LOW);
 		for (int x = 0; x < 50000; x++)
 			;
-		dumb++;
 	}
 
 	return 0;
