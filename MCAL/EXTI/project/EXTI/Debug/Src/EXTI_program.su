@@ -1,0 +1,5 @@
+EXTI_program.c:15:6:MEXTI_voidSetInterruptMode	16	static
+EXTI_program.c:34:6:MEXTI_voidEXTILineStatus	16	static
+EXTI_program.c:40:6:MEXTI_voidTriggerSWINT	16	static
+EXTI_program.c:45:6:MEXTI_voidClearPending	16	static
+EXTI_program.c:50:4:MEXTI_u8ISPending	16	static

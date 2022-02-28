@@ -1,0 +1,4 @@
+LED_MATRIX_program.c:38:6:LMTRX_voidDisableAllColumns	16	static
+LED_MATRIX_program.c:46:6:LMTRX_voidSetRowValue	24	static
+LED_MATRIX_program.c:62:6:LMTRX_voidDisplayPattern	24	static
+LED_MATRIX_program.c:73:6:LMTRX_voidDisplayPattern2	24	static

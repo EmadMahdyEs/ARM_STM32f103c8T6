@@ -20,27 +20,39 @@ u8 SYSTICK_ISR_TYPE_PERIODIC = 0;
 
 void MSYSTICK_voidInit(void)
 {
+	// assign the global variable SYSTICK_Frequency according to the used input source
 #if SYSTICK_INPUT_SOURCE==SYSTICK_CLOCK_SOURCE_AHB
 	SYSTICK_Frequency = RCC_F_CPU;
 #elif SYSTICK_INPUT_SOURCE == SYSTICK_CLOCK_SOURCE_AHB_8
 	SYSTICK_Frequency = RCC_F_CPU / 8;
 #endif
 
+	// decide if input source is HSE or HSE/8
 	INS_BIT(SYSTICK->STK_CTRL, 2, SYSTICK_INPUT_SOURCE);
+	// decide the interrupt state 
 	INS_BIT(SYSTICK->STK_CTRL, 1, SYSTICK_INT_STATUS);
 
 #if (SYSTICK_PRELOAD_VALUE)
+	// assign an initial valuefor the systick
 	SYSTICK->STK_LOAD = SYSTICK_PRELOAD_VALUE;
 #else
 #error	SYSTICK_PRELOAD_VALUE in Configuration file must have a value
 #endif
 }
 
+
+/**************************************************
+just to enable the systick
+**************************************************/
 void MSYSTICK_voidSTATUS(SYSTICK_STATUS_t status)
 {
 	INS_BIT(SYSTICK->STK_CTRL, 0, status);
 }
 
+
+/*************************************************
+preload the SYSTICK immediately or wait to finish the current counting loop
+**************************************************/
 void MSYSTICK_voidPreload(SYSTICK_PRELOAD_t type, u32 value)
 {
 	if (type == SYSTICK_PRELOAD_IMMEDIATE)
@@ -155,10 +167,16 @@ void MSYSTICK_voidStopPeriodicFunction(void)
 	SYSTICK->STK_VAL = 0;
 }
 
+
+/******************************************
+convert from milliseconds to ticks
+*******************************************/
 u32 MSYSTICK_u32MS_TO_TICKS(u32 copy_timeMS)
 {
 	return copy_timeMS * (SYSTICK_Frequency / 1000);
 }
+
+
 
 void SysTick_Handler(void)
 {

@@ -1,0 +1,8 @@
+GPIO_program.c:15:6:MGPIO_voidSetPortDirection	32	static
+GPIO_program.c:24:6:MGPIO_voidSetPinDirection	24	static
+GPIO_program.c:67:6:MGPIO_voidSetPinValue	16	static
+GPIO_program.c:111:8:MGPIO_u8GetPinValue	24	static
+GPIO_program.c:138:8:MGPIO_u16GetPort	24	static
+GPIO_program.c:160:6:MGPIO_voidLockPins	16	static
+GPIO_program.c:188:6:MGPIO_voidWriteField	24	static
+GPIO_program.c:214:6:MAFIO_voidSetEXTILineSource	24	static

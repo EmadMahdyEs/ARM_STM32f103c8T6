@@ -1,0 +1,11 @@
+LCD_program.c:26:6:HLCD_voidInit	8	static
+LCD_program.c:48:6:HLCD_voidSendCommand	16	static
+LCD_program.c:75:6:HLCD_voidSendData	16	static
+LCD_program.c:101:6:HLCD_voidDisplayString	16	static
+LCD_program.c:112:6:HLCD_voidDisplayNumber	24	static
+LCD_program.c:146:6:HLCD_voidClearDisplay	8	static
+LCD_program.c:154:6:HLCD_voidGoToPos	24	static
+LCD_program.c:164:6:HLCD_voidSendSpecialCharacter	24	static
+LCD_program.c:189:6:HLCD_voidSetSpecialCharacterPattern	24	static
+LCD_program.c:224:4:HLCD_u8GetFlag	24	static
+LCD_program.c:250:11:HLCD_u8GetDDRAMAddress	24	static

@@ -1,0 +1,7 @@
+NVIC_program.c:46:6:MNVIC_voidEnableInterrupt	16	static
+NVIC_program.c:52:6:MNVIC_voidDisableInterrupt	16	static
+NVIC_program.c:58:6:MNVIC_voidSetPendingInterrupt	16	static
+NVIC_program.c:63:6:MNVIC_voidClearPendingInterrupt	16	static
+NVIC_program.c:68:4:MNVIC_u8IsINTActive	16	static
+NVIC_program.c:73:6:MNVIC_voidSetPriorityGrouping	16	static
+NVIC_program.c:78:6:MNVIC_voidSetISRPriority	24	static

@@ -12,6 +12,21 @@
 #include "../Inc/MCAL/GPIO/GPIO_private.h"
 #include "../Inc/MCAL/GPIO/GPIO_configuration.h"
 
+
+/***************************************************
+give a contagious range of pins in a certain port the same configuration
+****************************************************/
+void MGPIO_voidSetPortDirection(GPIO_PORT copy_u8Port, u8 copy_Start,
+		u8 copy_end, GPIO_MODE copy_u8Mode, GPIO_CONFIGURATION copy_u8CNFG)
+{
+	for (int i = copy_Start; i <= copy_end; i++)
+	{
+		MGPIO_voidSetPinDirection(copy_u8Port, i, copy_u8Mode, copy_u8CNFG);
+	}
+}
+
+
+
 void MGPIO_voidSetPinDirection(GPIO_PORT copy_u8Port, u8 copy_u8Pin,
 		GPIO_MODE copy_u8Mode, GPIO_CONFIGURATION copy_u8CNFG)
 {
@@ -126,6 +141,31 @@ STATUS MGPIO_u8GetPinValue(GPIO_PORT copy_u8Port, u8 copy_u8Pin)
 	return status;
 }
 
+/*****************************************************
+read the port value
+******************************************************/
+STATUS MGPIO_u16GetPort(GPIO_PORT copy_u8Port, u16 *ptr_value)
+{
+	STATUS status = ZERO;
+	switch (copy_u8Port)
+	{
+		case GPIO_PORTA:
+			*ptr_value = GPIOA->GPIO_IDR;
+			status = ONE;
+			break;
+		case GPIO_PORTB:
+			*ptr_value = GPIOB->GPIO_IDR;
+			status = ONE;
+			break;
+
+		case GPIO_PORTC:
+			*ptr_value = GPIOC->GPIO_IDR;
+			status = ONE;
+			break;
+	}
+	return status;
+}
+
 void MGPIO_voidLockPins(GPIO_PORT copy_u8Port, u16 copy_u8LockPattern)
 {
 	switch (copy_u8Port)
@@ -154,3 +194,43 @@ void MGPIO_voidLockPins(GPIO_PORT copy_u8Port, u16 copy_u8LockPattern)
 
 }
 
+/***************************************************************
+write a certain fieldin the port value
+***************************************************************/
+void MGPIO_voidWriteField(GPIO_PORT copy_u8Port, u16 copy_u16Mask,
+		u16 copy_u16Value)
+{
+
+	u16 local_value_High = copy_u16Mask & copy_u16Value;
+	u16 local_value_Low = copy_u16Mask & (~copy_u16Value);
+
+	switch (copy_u8Port)
+	{
+		case GPIO_PORTA:
+			GPIOA->GPIO_BSRR = local_value_High;
+			GPIOA->GPIO_BRR = local_value_Low;
+			break;
+
+		case GPIO_PORTB:
+			GPIOB->GPIO_BSRR = local_value_High;
+			GPIOB->GPIO_BRR = local_value_Low;
+			break;
+
+		case GPIO_PORTC:
+			GPIOC->GPIO_BSRR = local_value_High;
+			GPIOC->GPIO_BRR = local_value_Low;
+			break;
+	}
+}
+
+/************************************************************
+decide which pinx portn will be the source for EXTI_LINEx 
+*************************************************************/
+void MAFIO_voidSetEXTILineSource(AFIO_EXTI_LINE copy_u8line,
+		AFIO_EXTI_LINE_SOURCE copy_u8Line_source)
+{
+	volatile u32 *reg = AFIO_EXTICR1 + (copy_u8line / 4);
+
+	INS_FIELD((*reg), 0b1111, (4 * (copy_u8line % 4)), copy_u8Line_source);
+
+}

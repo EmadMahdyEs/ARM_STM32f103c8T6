@@ -12,35 +12,7 @@
 #include "../Inc/MCAL/NVIC/NVIC_private.h"
 #include "../Inc/MCAL/NVIC/NVIC_configuration.h"
 
-//void MNVIC_voidEnableInterrupt(u8 copy_ISRNumber)
-//{
-//	volatile u32 *local_reg = NVIC_REG_ISER0 + copy_ISRNumber / 32;
-//	*local_reg = 1 << (copy_ISRNumber % 32);
-//}
-//
-//void MNVIC_voidDisableInterrupt(u8 copy_ISRNumber)
-//{
-//	volatile u32 *local_reg = NVIC_REG_ICER0 + copy_ISRNumber / 32;
-//	*local_reg = 1 << (copy_ISRNumber % 32);
-//}
-//
-//void MNVIC_voidSetPendingInterrupt(u8 copy_ISRNumber)
-//{
-//	volatile u32 *local_reg = NVIC_REG_ISPR0 + copy_ISRNumber / 32;
-//	*local_reg = 1 << (copy_ISRNumber % 32);
-//}
-//
-//void MNVIC_voidClearPendingInterrupt(u8 copy_ISRNumber)
-//{
-//	volatile u32 *local_reg = NVIC_REG_ICPR0 + copy_ISRNumber / 32;
-//	*local_reg = 1 << (copy_ISRNumber % 32);
-//}
-//
-//u8 MNVIC_u8IsINTActive(u8 copy_ISRNumber)
-//{
-//	volatile u32 *local_reg = NVIC_REG_IABR0 + copy_ISRNumber / 32;
-//	return GET_BIT((*local_reg), copy_ISRNumber % 32);
-//}
+
 
 /* to enable the interrupt */
 void MNVIC_voidEnableInterrupt(u8 copy_ISRNumber)
@@ -60,20 +32,25 @@ void MNVIC_voidSetPendingInterrupt(u8 copy_ISRNumber)
 	NVIC->NVIC_ISPR[copy_ISRNumber / 32] = 1 << (copy_ISRNumber % 32);
 }
 
+/* clear pending of a certain flag */
 void MNVIC_voidClearPendingInterrupt(u8 copy_ISRNumber)
 {
 	NVIC->NVIC_ICPR[copy_ISRNumber / 32] = 1 << (copy_ISRNumber % 32);
 }
 
+/* check if a certain ISR is Executing */
 u8 MNVIC_u8IsINTActive(u8 copy_ISRNumber)
 {
 	return GET_BIT(NVIC->NVIC_ISER[copy_ISRNumber/32], (copy_ISRNumber % 32));
 }
 
+/* set the grouping and sub grouping width and the value written will be interpreted according tothis */
 void MNVIC_voidSetPriorityGrouping(PRIORITY_GROUPING_t copy_value)
 {
 	SCB_REG_AIRCR = (copy_value << 8) | (0x5FA << 16);
 }
+
+
 
 void MNVIC_voidSetISRPriority(s8 copy_ISRNumber,
 		PRIORITY_GROUPING_t copy_GroupingType, u8 copy_Group, u8 copy_Sub)
