@@ -25,17 +25,10 @@ void MSYSTICK_voidBusyWait(u32 NumberOfTicks);
 void MSYSTICK_voidDelay_MS(u32 Delay_In_MS);
 
 void MSYSTICK_voidSetIntervalSingle(u32 Num_Ticks, void (*ptr)(void));
-
 void MSYSTICK_voidSetIntervalPeriodic(u32 Num_Ticks, void (*ptr)(void));
-
 void MSYSTICK_voidStopPeriodicFunction(void);
-
 u32 MSYSTICK_u32MS_TO_TICKS(u32 copy_timeMS);
-
-void SysTick_Handler(void);
-
 u32 MSYSTICK_u32GetRemaniningTime(void);
-
 u32 MSYSTICK_u32GetElapsedTime(void);
 
 #endif /* MCAL_SYSTICK_SYSTICK_INTERFACE_H_ */

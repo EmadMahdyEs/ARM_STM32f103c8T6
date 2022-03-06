@@ -1,0 +1,12 @@
+SYSTICK_program.c:21:6:MSYSTICK_voidInit	4	static
+SYSTICK_program.c:46:6:MSYSTICK_voidSTATUS	16	static
+SYSTICK_program.c:54:6:MSYSTICK_voidPreload	16	static
+SYSTICK_program.c:68:6:MSYSTICK_voidBusyWait	16	static
+SYSTICK_program.c:85:6:MSYSTICK_voidDelay_MS	16	static
+SYSTICK_program.c:102:6:MSYSTICK_voidSetIntervalSingle	16	static
+SYSTICK_program.c:128:6:MSYSTICK_voidSetIntervalPeriodic	16	static
+SYSTICK_program.c:154:6:MSYSTICK_voidStopPeriodicFunction	4	static
+SYSTICK_program.c:170:5:MSYSTICK_u32MS_TO_TICKS	16	static
+SYSTICK_program.c:175:6:SysTick_Handler	8	static
+SYSTICK_program.c:194:5:MSYSTICK_u32GetRemaniningTime	4	static
+SYSTICK_program.c:199:5:MSYSTICK_u32GetElapsedTime	4	static

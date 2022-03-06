@@ -39,6 +39,17 @@ typedef enum {
 
 } EXTI_LINEx;
 
+typedef enum {
+	EXTI_0_EVENT,
+	EXTI_1_EVENT,
+	EXTI_2_EVENT,
+	EXTI_3_EVENT,
+	EXTI_4_EVENT,
+	EXTI_5_9_EVENT,
+	EXTI_10_15_EVENT
+
+} EXTIx_EVENTS_t;
+
 void MEXTI_voidSetInterruptMode(u8 copy_u8LineNum,
 		EXTI_INTERRUPT_t copy_eINTType);
 
@@ -49,5 +60,7 @@ void MEXTI_voidTriggerSWINT(u8 copy_LineNum);
 void MEXTI_voidClearPending(u8 copy_LineNum);
 
 u8 MEXTI_u8ISPending(u8 copy_LineNum);
+
+void MEXTI_voidAssignInterruptFun(EXTIx_EVENTS_t copy_eEvent, void (*ptr)(void));
 
 #endif /* MCAL_EXTI_EXTI_INTERFACE_H_ */
